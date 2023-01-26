@@ -10,8 +10,10 @@ public class StringCalculator {
             int result = 0;
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < numbers.length(); i++) {
-                if (numbers.charAt(i) != ',')
-                    stringBuilder.append(numbers.charAt(i));
+                if (numbers.charAt(i) != ',' && numbers.charAt(i) != '\n') {
+                        stringBuilder.append(numbers.charAt(i));
+                }
+
                 else {
                     if (!stringBuilder.isEmpty()) {
                         result += Integer.parseInt(stringBuilder.toString());
