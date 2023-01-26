@@ -7,8 +7,21 @@ public class StringCalculator {
         else if (numbers.length() == 1)
             return Integer.parseInt(numbers);
         else {
+            int result = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < numbers.length(); i++) {
+                if (numbers.charAt(i) != ',')
+                    stringBuilder.append(numbers.charAt(i));
+                else {
+                    if (!stringBuilder.isEmpty()) {
+                        result += Integer.parseInt(stringBuilder.toString());
+                        stringBuilder.delete(0, stringBuilder.length());
+                    }
+                }
 
-            return 5;
+            }
+            result += Integer.parseInt(stringBuilder.toString());
+            return result;
         }
 
 

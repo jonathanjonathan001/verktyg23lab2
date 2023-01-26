@@ -10,15 +10,21 @@ class StringCalculatorTest {
     StringCalculator stringCalculator = new StringCalculator();
 
     @Test
-    void whenCallingAddWithEmptyStringReturnsZero() {
+    void callingAddWithEmptyStringReturnsZero() {
         int result = stringCalculator.add("");
         assertThat(result).isEqualTo(0);
     }
 
     @Test
-    void whenCallingAddWithStringWithOneDigitReturnsThatDigit(){
+    void callingAddWithStringWithOneDigitReturnsThatDigit(){
         int result = stringCalculator.add("1");
         assertThat(result).isEqualTo(1);
+    }
+    
+    @Test
+    void callingAddWithTwoCommaSeparatedValuesReturnsTheSumOfTheValues(){
+        int result = stringCalculator.add("10,20");
+        assertThat(result).isEqualTo(30);
     }
 
 }
