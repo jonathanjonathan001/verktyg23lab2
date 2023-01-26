@@ -27,4 +27,16 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(30);
     }
 
+    @Test
+    void callingAddWithThreeCommaSeparatedValuesReturnsTheSumOfTheValues() {
+        int result = stringCalculator.add("10,20,30");
+        assertThat(result).isEqualTo(60);
+    }
+
+    @Test
+    void callingAddWithLineBreaksReturnsTheSumTheValues(){
+        int result = stringCalculator.add("10\n20,30");
+        assertThat(result).isEqualTo(60);
+    }
+
 }
