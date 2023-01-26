@@ -8,9 +8,17 @@ public class StringCalculator {
             return Integer.parseInt(numbers);
         else {
             int result = 0;
+            char delimiterChar = ',';
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < numbers.length(); i++) {
-                if (numbers.charAt(i) != ',' && numbers.charAt(i) != '\n') {
+                if (i < 3 && numbers.length() >= 3 && numbers.charAt(0) == '/'
+                        && numbers.charAt(1) == '/' ) {
+                    delimiterChar = numbers.charAt(2);
+                    i = 3;
+                    continue;
+                }
+
+                if (numbers.charAt(i) != delimiterChar && numbers.charAt(i) != '\n') {
                         stringBuilder.append(numbers.charAt(i));
                 }
 

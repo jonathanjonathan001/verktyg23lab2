@@ -39,4 +39,11 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(60);
     }
 
+    @Test
+    void callingAddWithDelimiterOptionReturnsTheCorrectSum() {
+        int result = stringCalculator.add("//;\n1;2");
+        assertThat(result).isEqualTo(3);
+
+    }
+
 }
