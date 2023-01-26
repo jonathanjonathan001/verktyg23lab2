@@ -15,4 +15,10 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(0);
     }
 
+    @Test
+    void whenCallingAddWithStringWithOneDigitReturnsThatDigit(){
+        int result = stringCalculator.add("1");
+        assertThat(result).isEqualTo(1);
+    }
+
 }
