@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class StringCalculatorTest {
 
     StringCalculator stringCalculator = new StringCalculator();
@@ -43,6 +43,14 @@ class StringCalculatorTest {
     void callingAddWithDelimiterOptionReturnsTheCorrectSum() {
         int result = stringCalculator.add("//;\n1;2");
         assertThat(result).isEqualTo(3);
+
+    }
+
+    @Test
+    void callingAddWithNegativeNumbersResultsInAnExceptionThrown() {
+
+        assertThatThrownBy(() -> stringCalculator.add("-1,-2")).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("negatives not allowed: -1, -2");
 
     }
 

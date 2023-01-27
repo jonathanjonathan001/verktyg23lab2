@@ -8,8 +8,10 @@ public class StringCalculator {
             return Integer.parseInt(numbers);
         else {
             int result = 0;
+            boolean hasNegatives = false;
             char delimiterChar = ',';
             StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder negativesStringBuilder = new StringBuilder();
             for (int i = 0; i < numbers.length(); i++) {
                 if (i < 3 && numbers.length() >= 3 && numbers.charAt(0) == '/'
                         && numbers.charAt(1) == '/' ) {
@@ -24,13 +26,24 @@ public class StringCalculator {
 
                 else {
                     if (!stringBuilder.isEmpty()) {
-                        result += Integer.parseInt(stringBuilder.toString());
+                        int numberToAdd = Integer.parseInt(stringBuilder.toString());
+                        if (numberToAdd < 0) {
+                            hasNegatives = true;
+                            negativesStringBuilder.append("").append(numberToAdd).append(", ");
+                        }
+                        result += numberToAdd;
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
 
             }
-            result += Integer.parseInt(stringBuilder.toString());
+            int numberToAdd = Integer.parseInt(stringBuilder.toString());
+            result += numberToAdd;
+            negativesStringBuilder.append("").append(numberToAdd);
+            if (hasNegatives) {
+                String negativesString = negativesStringBuilder.toString();
+                throw new IllegalArgumentException("negatives not allowed: " + negativesString);
+            }
             return result;
         }
 
