@@ -40,10 +40,9 @@ public class StringCalculator {
             int numberToAdd = Integer.parseInt(stringBuilder.toString());
             result += numberToAdd;
             negativesStringBuilder.append("").append(numberToAdd);
-            if (hasNegatives) {
-                String negativesString = negativesStringBuilder.toString();
-                throw new IllegalArgumentException("negatives not allowed: " + negativesString);
-            }
+            if (hasNegatives)
+                throw new IllegalArgumentException("negatives not allowed: " + negativesStringBuilder.toString());
+
             return result;
         }
 
