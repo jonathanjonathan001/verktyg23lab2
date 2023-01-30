@@ -17,28 +17,27 @@ public class StringCalculator {
             delimiterChars.append(",");
             StringBuilder stringBuilder = new StringBuilder();
             StringBuilder negativesStringBuilder = new StringBuilder();
-            int beginAgainIndex = 0;
+
             for (int i = 0; i < numbers.length(); i++) {
                 if (numbers.length() >= 3 && numbers.charAt(0) == '/'
                         && numbers.charAt(1) == '/') {
 
-                    if (numbers.charAt(i + 2) != '[') {
+                    if (numbers.charAt(2) != '[') {
                         delimiterChars.append(numbers.charAt(i + 2));
                         numbers = numbers.substring(3);
                         i = 0;
                         continue;
+                    } else if (numbers.charAt(i + 2) != '[' && numbers.charAt(i + 2) != ']') {
+                        delimiterChars.append(numbers.charAt(i + 2));
+                        continue;
+                    } else if (numbers.charAt(i + 2) != ']') {
+                        delimiterChars.append(numbers.charAt(i + 3));
+                        continue;
                     } else {
-                        if (numbers.charAt(i + 2) != ']') {
-                            delimiterChars.append(numbers.charAt(i + 3));
-                            continue;
-                        } else {
-                            numbers = numbers.substring(i + 2);
-                            i = 0;
-                            continue;
-                        }
-
+                        numbers = numbers.substring(i+3);
+                        i = 0;
+                        continue;
                     }
-
 
                 }
 
