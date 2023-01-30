@@ -60,4 +60,10 @@ class StringCalculatorTest {
         assertThat(result).isEqualTo(2);
     }
 
+    @Test
+    void callindAddWithDelimiterOfAnyLengthReturnsCorrectResult() {
+        int result = stringCalculator.add("//***\n1***2***3");
+        assertThat(result).isEqualTo(6);
+    }
+
 }
