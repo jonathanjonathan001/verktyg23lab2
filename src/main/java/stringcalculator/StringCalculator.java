@@ -34,9 +34,13 @@ public class StringCalculator {
                         delimiterChars.append(numbers.charAt(i + 3));
                         continue;
                     } else {
-                        numbers = numbers.substring(i+3);
-                        i = 0;
-                        continue;
+                        if (numbers.charAt(i+2) == ']' && numbers.charAt(i+3) == '[')
+                            continue;
+                        else {
+                            numbers = numbers.substring(i + 3);
+                            i = 0;
+                            continue;
+                        }
                     }
 
                 }
