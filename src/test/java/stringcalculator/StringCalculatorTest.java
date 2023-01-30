@@ -62,8 +62,13 @@ class StringCalculatorTest {
 
     @Test
     void callindAddWithDelimiterOfAnyLengthReturnsCorrectResult() {
-        int result = stringCalculator.add("//***\n1***2***3");
+        int result = stringCalculator.add("//[***]\n1***2***3");
         assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void callingAddWithMultipleDelimitersReturnsCorrectResult() {
+        int result = stringCalculator.add("//[*][%]\n1*2%3");
     }
 
 }

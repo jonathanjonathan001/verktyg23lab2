@@ -1,5 +1,8 @@
 package stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
     public int add(String numbers) {
         if (numbers.equals(""))
@@ -9,33 +12,60 @@ public class StringCalculator {
         else {
             int result = 0;
             boolean hasNegatives = false;
-            char delimiterChar = ',';
+
+            StringBuilder delimiterChars = new StringBuilder();
+            delimiterChars.append(",");
             StringBuilder stringBuilder = new StringBuilder();
             StringBuilder negativesStringBuilder = new StringBuilder();
+            int beginAgainIndex = 0;
             for (int i = 0; i < numbers.length(); i++) {
-                if (i < 3 && numbers.length() >= 3 && numbers.charAt(0) == '/'
-                        && numbers.charAt(1) == '/' ) {
-                    delimiterChar = numbers.charAt(2);
-                    i = 3;
-                    continue;
+                if (numbers.length() >= 3 && numbers.charAt(0) == '/'
+                        && numbers.charAt(1) == '/') {
+
+                    if (numbers.charAt(i + 2) != '[') {
+                        delimiterChars.append(numbers.charAt(i + 2));
+                        numbers = numbers.substring(3);
+                        i = 0;
+                        continue;
+                    } else {
+                        if (numbers.charAt(i + 2) != ']') {
+                            delimiterChars.append(numbers.charAt(i + 3));
+                            continue;
+                        } else {
+                            numbers = numbers.substring(i + 2);
+                            i = 0;
+                            continue;
+                        }
+
+                    }
+
+
                 }
 
-                if (numbers.charAt(i) != delimiterChar && numbers.charAt(i) != '\n') {
-                        stringBuilder.append(numbers.charAt(i));
-                }
 
-                else {
+                if (!delimiterChars.toString().contains("" + numbers.charAt(i)) && numbers.charAt(i) != '\n') {
+
+                    stringBuilder.append(numbers.charAt(i));
+
+                } else {
+
                     if (!stringBuilder.isEmpty()) {
                         int numberToAdd = Integer.parseInt(stringBuilder.toString());
                         if (numberToAdd < 0) {
                             hasNegatives = true;
                             negativesStringBuilder.append("").append(numberToAdd).append(", ");
+
                         }
-                        if (numberToAdd <= 1000)
+                        if (numberToAdd <= 1000) {
                             result += numberToAdd;
-                        stringBuilder.delete(0, stringBuilder.length());
+
+                        }
+
                     }
+
+                    stringBuilder.delete(0, stringBuilder.length());
                 }
+
 
             }
             int numberToAdd = Integer.parseInt(stringBuilder.toString());
