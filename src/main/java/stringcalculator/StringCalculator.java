@@ -31,15 +31,20 @@ public class StringCalculator {
                             hasNegatives = true;
                             negativesStringBuilder.append("").append(numberToAdd).append(", ");
                         }
-                        result += numberToAdd;
+                        if (numberToAdd <= 1000)
+                            result += numberToAdd;
                         stringBuilder.delete(0, stringBuilder.length());
                     }
                 }
 
             }
             int numberToAdd = Integer.parseInt(stringBuilder.toString());
-            result += numberToAdd;
-            negativesStringBuilder.append("").append(numberToAdd);
+            if (numberToAdd <= 1000)
+                result += numberToAdd;
+            if (numberToAdd < 0) {
+                hasNegatives = true;
+                negativesStringBuilder.append("").append(numberToAdd);
+            }
             if (hasNegatives)
                 throw new IllegalArgumentException("negatives not allowed: " + negativesStringBuilder.toString());
 

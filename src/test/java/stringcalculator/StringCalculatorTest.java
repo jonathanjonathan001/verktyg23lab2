@@ -54,4 +54,10 @@ class StringCalculatorTest {
 
     }
 
+    @Test
+    void callingAddWithNumberGreaterThan1000ShouldIgnoreThatNumber() {
+        int result = stringCalculator.add("2,1001");
+        assertThat(result).isEqualTo(2);
+    }
+
 }
